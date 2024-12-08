@@ -1,2 +1,3 @@
-export * from './home/HomePage';
-export * from './home/OrderPage';
+export * from './Dashboard/HomePage';
+export * from './Dashboard/OrderPage';
+export * from './Dashboard/MenuPage';

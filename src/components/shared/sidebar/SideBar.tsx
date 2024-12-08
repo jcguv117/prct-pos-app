@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 const menuItems = [
-    { title: 'Inicio',  subTitle: 'Información general', path: '/',                   Icon: null },
+    { title: 'Inicio',  subTitle: 'Información general', path: '/dashboard/home',                   Icon: null },
     { title: 'Menus',   subTitle: 'Alta de Ordenes',     path: '/dashboard/menu',     Icon: null },
     { title: 'Ordenes', subTitle: 'Control de Ordenes',  path: '/dashboard/orders',   Icon: null },
 ];

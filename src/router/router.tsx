@@ -1,13 +1,13 @@
 import { createBrowserRouter, Navigate, Outlet, useLocation } from 'react-router-dom';
 
 import { DashboardLayout } from '../layouts';
-import { HomePage, OrderPage } from '../pages';
+import { HomePage, MenuPage, OrderPage } from '../pages';
 
 const Root = () => {
     const { pathname } = useLocation();
   
     if (pathname === '/') {
-      return <Navigate to="/dashboard" />;
+      return <Navigate to="/dashboard/home" />;
     }
     
     return (
@@ -27,8 +27,12 @@ export const router = createBrowserRouter( [
         element: <DashboardLayout />,
         children: [
           {
-            path: '',
+            path: 'home',
             element: <HomePage />
+          },
+          {
+            path: 'menu',
+            element: <MenuPage />
           },
           {
             path: 'orders',
@@ -39,7 +43,7 @@ export const router = createBrowserRouter( [
       },
       {
         path: '*',
-        element: <Navigate to="/dashboard" replace />
+        element: <Navigate to="/dashboard/home" replace />
       }
 
     ],
