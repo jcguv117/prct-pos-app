@@ -1,9 +1,9 @@
-import {Link} from "preact-router/match";
+import { NavLink } from "react-router-dom";
 
 const menuItems = [
-    { title: 'Inicio',  subTitle: 'Información general', path: '/',         Icon: null },
-    { title: 'Menus',   subTitle: 'Alta de Ordenes',     path: '/menu',     Icon: null },
-    { title: 'Ordenes', subTitle: 'Control de Ordenes',  path: '/orders',  Icon: null },
+    { title: 'Inicio',  subTitle: 'Información general', path: '/',                   Icon: null },
+    { title: 'Menus',   subTitle: 'Alta de Ordenes',     path: '/dashboard/menu',     Icon: null },
+    { title: 'Ordenes', subTitle: 'Control de Ordenes',  path: '/dashboard/orders',   Icon: null },
 ];
 
   interface SideBar {
@@ -21,7 +21,6 @@ export const SideBar = () => {
               PointOfSale
               <span class="text-blue-500 text-xs"> app</span>
             </h1>
-            <p class="text-slate-500 text-sm">Manejador de estados simple pero poderoso.</p>
           </div>
     
           {/* Nav Items */ }
@@ -41,7 +40,7 @@ export const SideBar = () => {
 
 const SideMenuItem = ({ path, title, subTitle, Icon }: SideBar) => {
   return (
-    <Link activeClassName="active" href={path}>
+    <NavLink to={path}>
         <div class='h-full align-top self-start'>
             {/* <Icon /> */}
         </div>
@@ -49,6 +48,6 @@ const SideMenuItem = ({ path, title, subTitle, Icon }: SideBar) => {
             <span class="text-lg font-bold leading-5 text-white">{ title }</span>
             <span class="text-sm text-white/50 hidden md:block">{ subTitle }</span>
         </div>
-    </Link>
+    </NavLink>
   );
 }
