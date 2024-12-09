@@ -1,35 +1,38 @@
 import { SideBar } from '../components';
 import { Outlet } from 'react-router-dom';
+import { useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 export const DashboardLayout = () => {
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const toggleSidebar = () => setShowSidebar(!showSidebar);
+
   return (
     <>
         <button 
-          type="button" 
-          data-drawer-target="default-sidebar" 
-          data-drawer-toggle="default-sidebar" 
-          aria-controls="default-sidebar" 
-          class="ms-3 mt-2 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 
-              focus:ring-gray-200 sm:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          type="button"
+          onClick={toggleSidebar} 
+          class={`fixed z-40 ms-3 px-3 mt-2 inline-flex items-center rounded-lg p-2 text-sm bg-gray-600  hover:bg-gray-100 focus:outline-none focus:ring-2 
+              focus:ring-gray-200 sm:hidden dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600`}
               >
-          <span class="sr-only">Open sidebar</span>
+          <span class="sr-only text-white">Open</span>
           <FontAwesomeIcon icon={faBars} size='2xl'/>
         </button>
 
         <div 
-          id="default-sidebar" 
-          class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full transition-transform sm:translate-x-0" 
-          aria-label="Sidebar"
+          id="sidebar" 
+          class={`fixed left-0 top-0 z-50 h-screen w-64 transition-transform sm:translate-x-0 
+                ${showSidebar ? 'translate-x-0' : '-translate-x-full'} `}
             >
           <div class="h-full bg-gray-50 py-4 dark:bg-gray-800">
             <SideBar />
           </div>
         </div>
 
-        <div class="p-8 sm:ml-64">
+        <div class="p-8 sm:ml-64" onClick={() => setShowSidebar(false)}>
             <Outlet />
         </div>
 
