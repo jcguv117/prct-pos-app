@@ -21,7 +21,7 @@ export const MenuCard = ({ item, add }: MenuCardProps) => {
 
   return (
       <div
-        className="bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105"
+        className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transform transition-transform duration-300 hover:scale-105"
         role="article"
         onClick={() => add(item)}
       >

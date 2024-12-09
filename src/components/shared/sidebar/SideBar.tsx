@@ -19,7 +19,10 @@ const menuItems: SideBar[] = [
 
 export const SideBar = () => {
     return (
-        <div id="menu" class="bg-gray-900 min-h-screen z-10 text-slate-300 w-80 left-0 overflow-y-scroll">
+        <div 
+          id="sidebar" 
+          class="min-h-screen"
+          >
           <div id="logoSideBar" class="my-4 px-6">
             <h1 class="text-lg md:text-2xl font-bold text-white">
               PointOfSale
@@ -28,7 +31,7 @@ export const SideBar = () => {
           </div>
     
           {/* Nav Items */ }
-          <nav id="nav" class="w-full px-6">
+          <nav id="nav" class="w-full">
     
             {
               menuItems.map( item =>(
@@ -45,10 +48,10 @@ export const SideBar = () => {
 const SideMenuItem = ({ path, title, subTitle, icon }: SideBar) => {
   return (
     <NavLink to={path}>
-        <div class='h-full align-top self-start'>
+        <div class='h-full align-top self-start w-6 flex justify-center'>
             {
               icon &&
-              <FontAwesomeIcon icon={icon} />
+              <FontAwesomeIcon icon={icon} size="xl" />
             }
         </div>
         <div class="flex flex-col">
