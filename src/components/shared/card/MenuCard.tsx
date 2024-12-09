@@ -31,7 +31,7 @@ export const MenuCard = ({ item, add }: MenuCardProps) => {
             className="w-full h-48 object-cover"
             onError={handleErrorImage}
           />
-          <div className="p-4">
+          <div className="p-4 select-none">
             <h3 className="text-xl font-semibold mb-2">{label}</h3>
             <p className="text-gray-600 mb-4">{description}</p>
             <div className="flex justify-between items-center">
