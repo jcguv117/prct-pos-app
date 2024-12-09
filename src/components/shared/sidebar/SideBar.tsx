@@ -1,17 +1,21 @@
 import { NavLink } from "react-router-dom";
 
-const menuItems = [
-    { title: 'Inicio',  subTitle: 'Información general', path: '/dashboard/home',                   Icon: null },
-    { title: 'Menus',   subTitle: 'Alta de Ordenes',     path: '/dashboard/menu',     Icon: null },
-    { title: 'Ordenes', subTitle: 'Control de Ordenes',  path: '/dashboard/orders',   Icon: null },
-];
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faReceipt, faRectangleList } from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
   interface SideBar {
     path: string;
     title: string;
     subTitle: string;
-    Icon?: null;
+    icon?: IconDefinition | null;
   }
+
+const menuItems: SideBar[] = [
+  { title: 'Inicio' , subTitle: 'Información general' , path: '/dashboard/home'   , icon: faHouse },
+  { title: 'Menus'  , subTitle: 'Alta de Ordenes'     , path: '/dashboard/menu'   , icon: faReceipt },
+  { title: 'Ordenes', subTitle: 'Control de Ordenes'  , path: '/dashboard/orders' , icon: faRectangleList },
+];
 
 export const SideBar = () => {
     return (
@@ -38,11 +42,14 @@ export const SideBar = () => {
       );
 }
 
-const SideMenuItem = ({ path, title, subTitle, Icon }: SideBar) => {
+const SideMenuItem = ({ path, title, subTitle, icon }: SideBar) => {
   return (
     <NavLink to={path}>
         <div class='h-full align-top self-start'>
-            {/* <Icon /> */}
+            {
+              icon &&
+              <FontAwesomeIcon icon={icon} />
+            }
         </div>
         <div class="flex flex-col">
             <span class="text-lg font-bold leading-5 text-white">{ title }</span>

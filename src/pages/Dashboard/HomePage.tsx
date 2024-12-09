@@ -1,3 +1,4 @@
+import { faCircleDollarToSlot, faFileInvoiceDollar, faSackDollar } from "@fortawesome/free-solid-svg-icons"
 import { StatCard } from "../../components"
 
 export const HomePage = () => {
@@ -7,17 +8,20 @@ export const HomePage = () => {
             <StatCard
               title={'Total de Ventas para Corte'}
               stat={`$${0.00}`}
-              twClassIcon={'fill-green-600'}
+              icon={faSackDollar}
+              twClass={'text-green-600'}
               />
             <StatCard
               title={'Cuentas abiertas'}
               stat={`10`}
-              twClassIcon={'fill-gray-600'}
+              icon={faFileInvoiceDollar}
+              twClass={'text-gray-600'}
               />
             <StatCard
               title={'Total de cuentas abiertas'}
               stat={`$${0.00}`}
-              twClassIcon={'fill-amber-600'}
+              icon={faCircleDollarToSlot}
+              twClass={'text-amber-600'}
               />
         </div>
     </div>
