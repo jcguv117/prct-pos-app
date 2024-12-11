@@ -1,10 +1,11 @@
-import { Cart, MenuCard } from "../../components";
+import { Cart, FloatButton, MenuCard } from "../../components";
 import { Drinks, DrinkItem } from "../../helpers/data/DrinkItems";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileInvoice } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "preact/hooks";
 
 export const MenuPage = () => {
   const listItems: DrinkItem[] = Drinks;
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div class="w-full flex gap-5">
         <div class="flex-auto">
@@ -21,21 +22,16 @@ export const MenuPage = () => {
             }
           </div>
         </div>
-
-          {/* SIDEBAR ORDER */}
-        <div class="w-72">
-          {/* <div class="fixed bottom-4 right-4">
-            <button 
-              type="button" 
-              class="rounded-full bg-green-600 h-16 w-16"
-              >
-              <FontAwesomeIcon icon={faFileInvoice} size="2xl" />
-            </button>
-          </div> */}
-          <div class="fixed mr-2 w-72">
-            <Cart />
-          </div>
-        </div>
+        {
+          <>
+            <div class={`w-72 transition-transform ${isOpen ? '-translate-x-0' : 'translate-x-full hidden'}`}>
+                <div class="fixed mr-2 w-72">
+                  <Cart handleClose={() => setIsOpen(!isOpen)} />
+                </div>
+            </div>
+            <FloatButton handleAction={() => setIsOpen(!isOpen)} />
+            </>
+        }
     </div>    
   )
 }

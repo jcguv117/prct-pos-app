@@ -1,4 +1,4 @@
-import { faRemove } from "@fortawesome/free-solid-svg-icons"
+import { faCircleMinus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export const CartItems = () => {
@@ -16,9 +16,9 @@ export const CartItems = () => {
             <div className="flex items-center space-x-2">
                 <span>{ 0 }</span>
                 <button
-                    className="p-1 rounded-full bg-gray-50 hover:bg-gray-100 text-gray-400"
+                    className="px-1 rounded-full bg-gray-50 hover:bg-gray-100 text-gray-400"
                     >
-                    <FontAwesomeIcon icon={faRemove} />
+                    <FontAwesomeIcon icon={faCircleMinus} size="xl" />
                 </button>
             </div>
         </div>

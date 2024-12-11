@@ -1,15 +1,28 @@
-import { faCancel, faCheck, faFileInvoice } from "@fortawesome/free-solid-svg-icons"
+import { faArrowDown, faCancel, faCheck, faChevronDown, faFileInvoice, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CartItems } from "./CartItems"
 
-export const Cart = () => {
+export const Cart = ({handleClose}: { handleClose: () => void }) => {
   return (
-    <div class='bg-white text-black p-6 rounded-lg shadow-md h-fit'>  
+    <div 
+        class='bg-white text-black h-[95vh] p-6 rounded-lg shadow-md 
+                flex flex-col justify-between'
+                >  
+        <div class="w-full flex flex-row-reverse" >
+            <button 
+                type="button" 
+                class="cursor-pointer" 
+                onClick={handleClose}
+                    >
+                <FontAwesomeIcon  icon={faXmark}  />
+            </button>
+        </div>
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-x-2">
             <FontAwesomeIcon icon={faFileInvoice} size="2xl"/>
             Nueva Orden
         </h2>
-        <div>
+        <div class="flex-auto overflow-auto">
+            <CartItems />
             <CartItems />
             <CartItems />
             <CartItems />
