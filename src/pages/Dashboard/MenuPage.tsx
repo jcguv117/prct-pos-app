@@ -1,10 +1,13 @@
 import { Cart, FloatButton, MenuCard } from "../../components";
 import { Drinks, DrinkItem } from "../../helpers/data/DrinkItems";
 import { useState } from "preact/hooks";
+import { useOrderStore } from "../../stores/order.store";
 
 export const MenuPage = () => {
   const listItems: DrinkItem[] = Drinks;
   const [isOpen, setIsOpen] = useState(false);
+
+  const addItemOrder = useOrderStore(state => state.addItemOrder);
 
   return (
     <div class="w-full flex gap-5">
@@ -17,7 +20,7 @@ export const MenuPage = () => {
                 <MenuCard 
                   key={item.label}
                   item={item}
-                  add={() => console.log(item)} />
+                  add={() => addItemOrder(item)} />
               ))
             }
           </div>
