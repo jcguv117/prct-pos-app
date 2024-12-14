@@ -1,8 +1,42 @@
 import { faArrowDown, faCancel, faCheck, faChevronDown, faFileInvoice, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CartItems } from "./CartItems"
+import { useOrderStore } from "../../../stores/order.store"
+import { useMemo } from "preact/hooks"
+
+interface CartItemProps {
+    name: string,
+    total: number,
+    quantity: number
+} 
 
 export const Cart = ({handleClose}: { handleClose: () => void }) => {
+
+    const items = useOrderStore(state => state.items)
+    const summarizedItems = useOrderStore(state => state.summarizedItems)
+    
+    const newListItems = useMemo(() => {
+      return summarizedItems()
+    }, [items])
+
+    // const listItems = useOrderStore(state => state.getList());
+    // const {getList} = useOrderStore()
+
+    // const newListItems: CartItemProps[] = Object.values(listItems.reduce((acc: Record<string, CartItemProps>, item: any) => {
+    //     if (!acc[item.id]) {
+    //         acc[item.id] = {
+    //             name: item.label,
+    //             quantity: 0,
+    //             total: 0
+    //         };
+    //     }
+    //     acc[item.id].quantity += 1;
+    //     acc[item.id].total += item.price;
+    //     return acc;
+    // }, {}));
+
+
+
   return (
     <div 
         class='bg-white text-black h-[95vh] p-6 rounded-lg shadow-md 
@@ -22,10 +56,12 @@ export const Cart = ({handleClose}: { handleClose: () => void }) => {
             Nueva Orden
         </h2>
         <div class="flex-auto overflow-auto">
-            <CartItems />
-            <CartItems />
-            <CartItems />
-            <CartItems />
+            {
+                newListItems &&
+                newListItems.map( (listItem: CartItemProps) => (
+                    <CartItems {...listItem} />
+                ))
+            }
         </div>
         <div class="border-t pt-4 mt-4">
             <div class="flex justify-between items-end mb-4 font-semibold">
