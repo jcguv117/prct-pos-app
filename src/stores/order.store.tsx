@@ -12,7 +12,7 @@ interface OrderState {
     addItemOrder: (item: any) => void,
     summarizedItems: () => any[],
     cleanItems: () => void,
-    // removeItemOrder
+    removeItemOrder: (id: number) => void,
     // confirmOrder
     // cancelOrder
     // editOrder
@@ -78,6 +78,20 @@ export const useOrderStore = create<OrderState>()(
           total: 0,
           items: []
       })),
+
+      removeItemOrder: (id) => set((state) => {
+        const itemIndex = state.items.findIndex(item => item.id === id);
+        
+        if (itemIndex !== -1) {
+          const items = [...state.items];
+          const removedItem = items[itemIndex];
+          state.total = state.total - removedItem.total;
+          items.splice(itemIndex, 1);
+          return { items };
+        }
+
+        return state;
+      })
 
     }),
     { 
