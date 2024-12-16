@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware';
-import { OrderState, Order } from '../interfaces';
+import { OrderState, Order, StatusOrder } from '../interfaces';
 import { formatDate, formatDateTime } from '../helpers/utilities';
 
 //* status: 'open' | 'success' | 'cancel';
@@ -17,12 +17,22 @@ export const useOrdeStore = create<OrderState>()(
           idOrder: get().orders.length + 1,
           date: formatDate(date),
           time: formatDateTime(date),
-          status: 'open',
+          status: StatusOrder.OPEN,
           products,
           total,
         }
         set((state) => ({
           orders: [...state.orders, order]
+        }))
+      },
+
+      updateStatusOrder: (id: number, status: StatusOrder) => {
+        set((state) => ({
+          orders: state.orders.map((order) => 
+            order.idOrder === id 
+              ? {...order, status: status}
+              : order
+          )
         }))
       },
 
