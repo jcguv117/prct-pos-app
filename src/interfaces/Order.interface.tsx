@@ -4,7 +4,7 @@ export interface Order {
     time: string,
     total: number,
     products: any[],
-    state: 'done' | 'cancel' | 'open',
+    status: 'done' | 'cancel' | 'open',
 }
 
 export interface OrderState {

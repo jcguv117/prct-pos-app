@@ -17,7 +17,7 @@ export const useOrdeStore = create<OrderState>()(
           idOrder: get().orders.length + 1,
           date: formatDate(date),
           time: formatDateTime(date),
-          state: 'open',
+          status: 'open',
           products,
           total,
         }
