@@ -28,7 +28,7 @@ export const AgTable = () => {
       return (
         <div class="flex flex-row gap-1">
           <button class="text-stone-600" onClick={() => window.alert('mostrar') }><FontAwesomeIcon icon={faEye} size='xl' /></button>
-          <button class="text-amber-600" onClick={() => window.alert('editar') }><FontAwesomeIcon icon={faEdit} size='xl' /></button>
+          <button class="text-amber-600" onClick={() => updateStatusOrder(id, StatusOrder.OPEN)}><FontAwesomeIcon icon={faEdit} size='xl' /></button>
           <button class="text-green-600" onClick={() => updateStatusOrder(id, StatusOrder.DONE)}><FontAwesomeIcon icon={faCircleCheck} size='xl' /></button>
           <button class="text-red-600"  onClick={() => updateStatusOrder(id, StatusOrder.CANCEL)}><FontAwesomeIcon icon={faCircleXmark} size='xl' /></button>
         </div>

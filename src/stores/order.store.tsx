@@ -6,8 +6,18 @@ import { formatDate, formatDateTime } from '../helpers/utilities';
 export const useOrderStore = create<OrderState>()(
   persist(
     (set, get) => ({
-      totalSales: 0,
       orders: [],
+      
+      getTotalOrders: (status: StatusOrder) => {
+        return get().orders
+          .filter(order => order.status === status)
+          .reduce((total, order) => total + order.total, 0);
+      },
+
+      getCountOrders: (status: StatusOrder) => {
+        return get().orders
+          .filter(order => order.status === status).length
+      },
 
       confirmOrder: (total, products) => {
         const date = new Date();

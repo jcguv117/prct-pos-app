@@ -14,8 +14,9 @@ export interface Order {
 }
 
 export interface OrderState {
-    totalSales: number,
     orders: Order[],
+    getTotalOrders: (status: StatusOrder) => number,
+    getCountOrders: (status: StatusOrder) => number,
     confirmOrder: (total: number, products: any[]) => void,
     updateStatusOrder: (id: number, status: StatusOrder) => void,
     // editOrder
