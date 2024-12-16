@@ -1,11 +1,7 @@
 import { faCircleMinus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { CartItemProps } from "../../../interfaces/Cart.interface"
 
-interface CartItemProps {
-    name: string,
-    total: number,
-    quantity: number
-} 
 
 export const CartItems = ({name, total, quantity}: CartItemProps) => {
   return (

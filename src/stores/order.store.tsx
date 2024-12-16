@@ -1,15 +1,17 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware';
+import { CartItemProps } from '../interfaces/Cart.interface';
 
 //* status: 'open' | 'success' | 'cancel';
 
 interface OrderState {
     total: number,
     items: any[],
+    listItems: CartItemProps[],
 
     addItemOrder: (item: any) => void,
-    getList: () => any,
     summarizedItems: () => any[],
+    cleanItems: () => void,
     // removeItemOrder
     // confirmOrder
     // cancelOrder
@@ -24,14 +26,31 @@ export const useOrderStore = create<OrderState>()(
       items: [],
       listItems: [],
 
-      addItemOrder: (item:any) => set(state => ({
-        items: [ ...state.items, { ...item } ]
-      })),
+      addItemOrder: (item:any) =>  
+        set((state) => {
+          const itemIndex = state.items.findIndex((i) => i.id === item.id);
+          let items = [...state.items];
 
-      getList: () => {
-        console.log(get().items)
-        return get().items
-      },
+          if(itemIndex !== -1) {
+            items[itemIndex] = {
+              ...items[itemIndex],
+              total: items[itemIndex].total + item.price,
+              quantity: items[itemIndex].quantity + 1,
+            };
+          } else {
+            // Si el artículo no existe, lo agregamos.
+            const newItem: CartItemProps = {
+              id: item.id,
+              name: item.label,
+              total: item.price,
+              quantity: 1,
+            };
+            items.push(newItem)
+          }
+          state.total = state.total + item.price;
+          return { items }
+        }),
+
 
       summarizedItems: () => {
         const items = get().items;
@@ -54,6 +73,11 @@ export const useOrderStore = create<OrderState>()(
 
         return Object.values(groupedItems);
       },
+
+      cleanItems: () => set(() => ({
+          total: 0,
+          items: []
+      })),
 
     }),
     { 

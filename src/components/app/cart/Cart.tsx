@@ -3,21 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CartItems } from "./CartItems"
 import { useOrderStore } from "../../../stores/order.store"
 import { useMemo } from "preact/hooks"
+import { CartItemProps } from "../../../interfaces/Cart.interface"
 
-interface CartItemProps {
-    name: string,
-    total: number,
-    quantity: number
-} 
 
 export const Cart = ({handleClose}: { handleClose: () => void }) => {
 
-    const items = useOrderStore(state => state.items)
-    const summarizedItems = useOrderStore(state => state.summarizedItems)
+    const newListItems = useOrderStore(state => state.items)
+    const total = useOrderStore(state => state.total)
+    const cleanItems = useOrderStore(state => state.cleanItems)
     
-    const newListItems = useMemo(() => {
-      return summarizedItems()
-    }, [items])
+    // const summarizedItems = useOrderStore(state => state.summarizedItems)
+    // const newListItems = useMemo(() => {
+    // return summarizedItems()
+    // }, [items])
 
     // const listItems = useOrderStore(state => state.getList());
     // const {getList} = useOrderStore()
@@ -66,18 +64,18 @@ export const Cart = ({handleClose}: { handleClose: () => void }) => {
         <div class="border-t pt-4 mt-4">
             <div class="flex justify-between items-end mb-4 font-semibold">
                 <span class="">Total:</span>
-                <span class="text-3xl">${21535}</span>
+                <span class="text-3xl">${total}</span>
             </div>
             <div class='flex flex-col gap-2'>
                 <button  
-                    // onClick={()=>add()} 
+                    onClick={() => cleanItems()} 
                     class="bg-green-600 hover:bg-green-700 text-white place-content-center py-3 rounded-md transition-colors flex items-center gap-2"
                     >
                     Confirmar 
                     <FontAwesomeIcon class='text-2xl' icon={faCheck} />
                 </button>
                 <button 
-                    // onClick={()=>reset()}
+                    onClick={() => cleanItems()}
                     class='bg-gray-600 hover:bg-gray-700 text-white place-content-center py-3 rounded-md transition-colors flex items-center gap-2'
                     >
                     Cancelar 
