@@ -5,7 +5,7 @@ import 'ag-grid-community/styles/ag-grid.css';
 // Optional Theme applied to the Data Grid
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { ColDef, ICellRendererParams } from 'ag-grid-community';
-import { useOrdeStore } from '../../../stores';
+import { useOrderStore } from '../../../stores';
 import { Order, StatusOrder } from '../../../interfaces';
 import { formatNumberWithCommas } from '../../../helpers/utilities';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,8 +13,8 @@ import { faCircleCheck, faCircleXmark, faEdit, faEye } from '@fortawesome/free-s
 
 export const AgTable = () => {
 
-    const orders            = useOrdeStore(state => state.orders);
-    const updateStatusOrder = useOrdeStore(state => state.updateStatusOrder);
+    const orders            = useOrderStore(state => state.orders);
+    const updateStatusOrder = useOrderStore(state => state.updateStatusOrder);
 
     // Row Data: The data to be displayed.
     const [rowData, setRowData] = useState<Order[]>(orders);

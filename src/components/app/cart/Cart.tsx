@@ -1,7 +1,7 @@
 import { faCancel, faCheck, faFileInvoice, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CartItems } from "./CartItems"
-import { useOrdeStore, useProductStore } from "../../../stores"
+import { useOrderStore, useProductStore } from "../../../stores"
 import { CartItemProps } from "../../../interfaces/Cart.interface"
 
 
@@ -11,7 +11,7 @@ export const Cart = ({handleClose}: { handleClose: () => void }) => {
     const total         = useProductStore(state => state.total)
     const cleanItems    = useProductStore(state => state.cleanItems)
 
-    const confirmOrder  = useOrdeStore(state => state.confirmOrder) 
+    const confirmOrder  = useOrderStore(state => state.confirmOrder) 
     
   return (
     <div 

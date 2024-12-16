@@ -3,9 +3,7 @@ import { persist } from 'zustand/middleware';
 import { OrderState, Order, StatusOrder } from '../interfaces';
 import { formatDate, formatDateTime } from '../helpers/utilities';
 
-//* status: 'open' | 'success' | 'cancel';
-
-export const useOrdeStore = create<OrderState>()(
+export const useOrderStore = create<OrderState>()(
   persist(
     (set, get) => ({
       totalSales: 0,
