@@ -1,6 +1,6 @@
 export interface Order {
-    id: number,
-    date: Date,
+    idOrder: number,
+    date: string,
     time: string,
     total: number,
     products: any[],
@@ -10,7 +10,7 @@ export interface Order {
 export interface OrderState {
     totalSales: number,
     orders: Order[],
-    confirmOrder: () => void,
+    confirmOrder: (total: number, products: any[]) => void,
     // cancelOrder
     // editOrder
 }
