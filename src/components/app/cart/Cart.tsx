@@ -1,39 +1,15 @@
-import { faArrowDown, faCancel, faCheck, faChevronDown, faFileInvoice, faXmark } from "@fortawesome/free-solid-svg-icons"
+import { faCancel, faCheck, faFileInvoice, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CartItems } from "./CartItems"
-import { useOrderStore } from "../../../stores/order.store"
-import { useMemo } from "preact/hooks"
+import { useProductStore } from "../../../stores"
 import { CartItemProps } from "../../../interfaces/Cart.interface"
 
 
 export const Cart = ({handleClose}: { handleClose: () => void }) => {
 
-    const newListItems = useOrderStore(state => state.items)
-    const total = useOrderStore(state => state.total)
-    const cleanItems = useOrderStore(state => state.cleanItems)
-    
-    // const summarizedItems = useOrderStore(state => state.summarizedItems)
-    // const newListItems = useMemo(() => {
-    // return summarizedItems()
-    // }, [items])
-
-    // const listItems = useOrderStore(state => state.getList());
-    // const {getList} = useOrderStore()
-
-    // const newListItems: CartItemProps[] = Object.values(listItems.reduce((acc: Record<string, CartItemProps>, item: any) => {
-    //     if (!acc[item.id]) {
-    //         acc[item.id] = {
-    //             name: item.label,
-    //             quantity: 0,
-    //             total: 0
-    //         };
-    //     }
-    //     acc[item.id].quantity += 1;
-    //     acc[item.id].total += item.price;
-    //     return acc;
-    // }, {}));
-
-
+    const newListItems  = useProductStore(state => state.items)
+    const total         = useProductStore(state => state.total)
+    const cleanItems    = useProductStore(state => state.cleanItems)
 
   return (
     <div 

@@ -1,12 +1,12 @@
 import { faCircleMinus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CartItemProps } from "../../../interfaces/Cart.interface"
-import { useOrderStore } from "../../../stores/order.store"
+import { useProductStore } from "../../../stores"
 
 
 export const CartItems = ({id, name, total, quantity}: CartItemProps ) => {
 
-    const handleRemove = useOrderStore(state => state.removeItemOrder)
+    const handleRemove = useProductStore(state => state.removeItem)
 
   return (
     <div className="space-y-4 mb-2">
