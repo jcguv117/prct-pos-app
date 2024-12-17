@@ -35,6 +35,10 @@ export const useCartStore = create<CartState>()(
           return { items }
       }),
 
+      updateItem: ( total: number, items: CartItem[] ) => {
+        set(() => ({ total, items}))
+      },
+
       cleanItems: () => set(() => ({
           total: 0,
           items: []

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CartItems } from "./CartItems"
 import { useOrderStore, useCartStore } from "../../../stores"
 import { CartItem } from "../../../interfaces/Cart.interface"
+import { StatusOrder } from "../../../interfaces"
 
 
 export const Cart = ({handleClose}: { handleClose: () => void }) => {
@@ -11,7 +12,30 @@ export const Cart = ({handleClose}: { handleClose: () => void }) => {
     const total         = useCartStore(state => state.total)
     const cleanItems    = useCartStore(state => state.cleanItems)
 
-    const confirmOrder  = useOrderStore(state => state.confirmOrder) 
+    const confirmOrder      = useOrderStore(state => state.confirmOrder) 
+    const getOrderEditing   = useOrderStore(state => state.getOrderEditing) 
+    const orderEditing      = useOrderStore(state => state.orderEditing) 
+    const updateStatusOrder = useOrderStore(state => state.updateStatusOrder) 
+    const updateOrder       = useOrderStore(state => state.updateOrder) 
+
+    const handleConfirm = (total: number, cartItems: CartItem[]) => {
+        const orderEditingId = getOrderEditing();
+        if(orderEditingId) {
+            updateOrder(orderEditingId, total, cartItems);
+        } else {
+            confirmOrder(total, cartItems);
+        }
+        cleanItems();
+    }
+
+    const handleCancel = () => {
+        const orderEditingId = getOrderEditing();
+        if(orderEditingId) {
+            updateStatusOrder(orderEditingId, StatusOrder.OPEN)
+            orderEditing(null);
+        }
+        cleanItems();
+    }
     
   return (
     <div 
@@ -46,17 +70,14 @@ export const Cart = ({handleClose}: { handleClose: () => void }) => {
             </div>
             <div class='flex flex-col gap-2'>
                 <button  
-                    onClick={() => {
-                            confirmOrder(total, cartItems)
-                            cleanItems()
-                        }} 
+                    onClick={() => {handleConfirm(total, cartItems)}} 
                     class="bg-green-600 hover:bg-green-700 text-white place-content-center py-3 rounded-md transition-colors flex items-center gap-2"
                     >
                     Confirmar 
                     <FontAwesomeIcon class='text-2xl' icon={faCheck} />
                 </button>
                 <button 
-                    onClick={() => cleanItems()}
+                    onClick={() => handleCancel()}
                     class='bg-gray-600 hover:bg-gray-700 text-white place-content-center py-3 rounded-md transition-colors flex items-center gap-2'
                     >
                     Cancelar 

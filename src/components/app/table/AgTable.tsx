@@ -5,7 +5,7 @@ import 'ag-grid-community/styles/ag-grid.css';
 // Optional Theme applied to the Data Grid
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { ColDef, ICellRendererParams } from 'ag-grid-community';
-import { useOrderStore } from '../../../stores';
+import { useCartStore, useOrderStore } from '../../../stores';
 import { Order, StatusOrder } from '../../../interfaces';
 import { formatNumberWithCommas } from '../../../helpers/utilities';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,6 +15,11 @@ export const AgTable = () => {
 
     const orders            = useOrderStore(state => state.orders);
     const updateStatusOrder = useOrderStore(state => state.updateStatusOrder);
+    const getOrderById      = useOrderStore(state => state.getOrderById);
+    const getCountOrders    = useOrderStore(state => state.getCountOrders);
+    const orderEditing      = useOrderStore(state => state.orderEditing);
+
+    const updateItem        = useCartStore(state => state.updateItem)
 
     // Row Data: The data to be displayed.
     const [rowData, setRowData] = useState<Order[]>(orders);
@@ -22,13 +27,27 @@ export const AgTable = () => {
     useEffect(() => {
       setRowData(orders)
     }, [orders])
+
+    const handleUpdateOrder = (id: number) => {
+        const isEditing = getCountOrders(StatusOrder.CHANGING)
+        if(!isEditing) {
+          const order = getOrderById(id);
+          if(order) {
+            const { listItems, total } = order;
+            updateItem(total, listItems);
+            orderEditing(id);
+            updateStatusOrder(id, StatusOrder.CHANGING)
+          }
+        } else 
+          alert("Ya existe una orden en revisión.")
+    }
     
 
     const actionButtoms = (id: number) => {
       return (
         <div class="flex flex-row gap-1">
           <button class="text-stone-600" onClick={() => window.alert('mostrar') }><FontAwesomeIcon icon={faEye} size='xl' /></button>
-          <button class="text-amber-600" onClick={() => updateStatusOrder(id, StatusOrder.OPEN)}><FontAwesomeIcon icon={faEdit} size='xl' /></button>
+          <button class="text-amber-600" onClick={() => handleUpdateOrder(id)}><FontAwesomeIcon icon={faEdit} size='xl' /></button>
           <button class="text-green-600" onClick={() => updateStatusOrder(id, StatusOrder.DONE)}><FontAwesomeIcon icon={faCircleCheck} size='xl' /></button>
           <button class="text-red-600"  onClick={() => updateStatusOrder(id, StatusOrder.CANCEL)}><FontAwesomeIcon icon={faCircleXmark} size='xl' /></button>
         </div>
@@ -47,6 +66,9 @@ export const AgTable = () => {
         case StatusOrder.CANCEL: 
           badge = {color: 'bg-red-700', label: 'Cancelado'}
           break;
+        case StatusOrder.CHANGING: 
+          badge = {color: 'bg-blue-700', label: 'Editando'}
+          break;
       }
       return (
         <div class="flex justify-center items-center p-1 h-full">
@@ -56,7 +78,7 @@ export const AgTable = () => {
     };
 
     const [colDefs] = useState<ColDef<Order>[]>([
-        { field: 'idOrder', headerName: "#"},
+        { field: 'idOrder', headerName: "#", valueFormatter: p => 'Orden #' + formatNumberWithCommas(p.value.toString()) },
         { field: 'date',    headerName: "Fecha" },
         { field: 'time',    headerName: "Hora" },
         { field: 'total',   headerName: "Total", valueFormatter: p => '$' + formatNumberWithCommas(p.value.toString())  },

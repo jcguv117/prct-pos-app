@@ -7,6 +7,7 @@ export const useOrderStore = create<OrderState>()(
   persist(
     (set, get) => ({
       orders: [],
+      idOrderEditing: null,
       
       getOrderById: (id: number) => {
         return get().orders.find( f => f.idOrder === id );
@@ -21,6 +22,14 @@ export const useOrderStore = create<OrderState>()(
       getCountOrders: (status: StatusOrder) => {
         return get().orders
           .filter(order => order.status === status).length
+      },
+
+      getOrderEditing: () => {
+        return get().idOrderEditing;
+      },
+
+      orderEditing: (id: number | null) => {
+        set(() => ({ idOrderEditing: id }))
       },
 
       confirmOrder: (total, items) => {
@@ -38,6 +47,24 @@ export const useOrderStore = create<OrderState>()(
         }))
       },
 
+      updateOrder: (id, total, items) => {
+        set(state => {
+          const orderIndex = state.orders.findIndex((i) => i.idOrder === id);
+          let orders = [...state.orders];
+          
+          if(orderIndex !== -1) {
+            orders[orderIndex] = {
+              ...orders[orderIndex],
+              total,
+              listItems: items,
+              status: StatusOrder.OPEN
+            };
+          }
+          
+          return { orders, idOrderEditing: null };
+        })
+      },
+      
       updateStatusOrder: (id: number, status: StatusOrder) => {
         set((state) => ({
           orders: state.orders.map((order) => 
