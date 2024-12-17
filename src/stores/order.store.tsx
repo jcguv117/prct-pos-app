@@ -8,6 +8,10 @@ export const useOrderStore = create<OrderState>()(
     (set, get) => ({
       orders: [],
       
+      getOrderById: (id: number) => {
+        return get().orders.find( f => f.idOrder === id );
+      },
+
       getTotalOrders: (status: StatusOrder) => {
         return get().orders
           .filter(order => order.status === status)
@@ -19,14 +23,14 @@ export const useOrderStore = create<OrderState>()(
           .filter(order => order.status === status).length
       },
 
-      confirmOrder: (total, products) => {
+      confirmOrder: (total, items) => {
         const date = new Date();
         const order: Order = {
           idOrder: get().orders.length + 1,
           date: formatDate(date),
           time: formatDateTime(date),
           status: StatusOrder.OPEN,
-          products,
+          listItems: items,
           total,
         }
         set((state) => ({

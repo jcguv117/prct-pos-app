@@ -1,13 +1,14 @@
 import { Cart, FloatButton, MenuCard } from "../../components";
-import { Drinks, DrinkItem } from "../../helpers/data/DrinkItems";
 import { useState } from "preact/hooks";
-import { useProductStore } from "../../stores";
+import { useCartStore } from "../../stores";
+import { Drinks } from "../../helpers/data/DrinkItems";
+import { Product } from "../../interfaces";
 
 export const MenuPage = () => {
-  const listItems: DrinkItem[] = Drinks;
+  const listItems: Product[] = Drinks;
   const [isOpen, setIsOpen] = useState(false);
 
-  const addItem = useProductStore(state => state.addItem);
+  const addItem = useCartStore(state => state.addItem);
 
   return (
     <div class="w-full flex gap-5">
@@ -16,7 +17,7 @@ export const MenuPage = () => {
           <div class="text-black grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             { 
               listItems && 
-              listItems.map((item: DrinkItem) => (
+              listItems.map((item: Product) => (
                 <MenuCard 
                   key={item.label}
                   item={item}

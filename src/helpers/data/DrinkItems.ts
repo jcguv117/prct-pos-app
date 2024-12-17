@@ -1,12 +1,6 @@
-export interface DrinkItem {
-  id: number,
-  image: string,
-  label: string,
-  description?: string,
-  price: number,
-}
+import { Product } from "../../interfaces";
 
-export const Drinks: DrinkItem[] = [
+export const Drinks: Product[] = [
     { id: 1, label: 'Vampiro'              , price: 150.00, image: "/img/drink_menu.png" },
     { id: 2, label: 'Paloma'               , price: 150.00, image: "" },
     { id: 3, label: 'Clamato'              , price: 150.00, image: "" },

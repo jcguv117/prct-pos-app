@@ -1,15 +1,15 @@
 import { faCancel, faCheck, faFileInvoice, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CartItems } from "./CartItems"
-import { useOrderStore, useProductStore } from "../../../stores"
-import { CartItemProps } from "../../../interfaces/Cart.interface"
+import { useOrderStore, useCartStore } from "../../../stores"
+import { CartItem } from "../../../interfaces/Cart.interface"
 
 
 export const Cart = ({handleClose}: { handleClose: () => void }) => {
 
-    const products      = useProductStore(state => state.items)
-    const total         = useProductStore(state => state.total)
-    const cleanItems    = useProductStore(state => state.cleanItems)
+    const cartItems     = useCartStore(state => state.items)
+    const total         = useCartStore(state => state.total)
+    const cleanItems    = useCartStore(state => state.cleanItems)
 
     const confirmOrder  = useOrderStore(state => state.confirmOrder) 
     
@@ -33,8 +33,8 @@ export const Cart = ({handleClose}: { handleClose: () => void }) => {
         </h2>
         <div class="flex-auto overflow-auto">
             {
-                products &&
-                products.map( (listItem: CartItemProps) => (
+                cartItems &&
+                cartItems.map( (listItem: CartItem) => (
                     <CartItems {...listItem} />
                 ))
             }
@@ -47,7 +47,7 @@ export const Cart = ({handleClose}: { handleClose: () => void }) => {
             <div class='flex flex-col gap-2'>
                 <button  
                     onClick={() => {
-                            confirmOrder(total, products)
+                            confirmOrder(total, cartItems)
                             cleanItems()
                         }} 
                     class="bg-green-600 hover:bg-green-700 text-white place-content-center py-3 rounded-md transition-colors flex items-center gap-2"
