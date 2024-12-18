@@ -42,7 +42,7 @@ export const Cart = ({handleClose}: { handleClose: () => void }) => {
         class='bg-white text-black h-[95vh] p-6 rounded-lg shadow-md 
                 flex flex-col justify-between'
                 >  
-        <div class="w-full flex flex-row-reverse" >
+        {/* <div class="w-full flex flex-row-reverse" >
             <button 
                 type="button" 
                 class="cursor-pointer" 
@@ -54,7 +54,7 @@ export const Cart = ({handleClose}: { handleClose: () => void }) => {
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-x-2">
             <FontAwesomeIcon icon={faFileInvoice} size="2xl"/>
             Nueva Orden
-        </h2>
+        </h2> */}
         <div class="flex-auto overflow-auto">
             {
                 cartItems &&
