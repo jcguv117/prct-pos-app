@@ -12,9 +12,9 @@ export const HomePage = () => {
 
   return (
     <div className="text-white">
-        <div className="flex flex-row justify-center text-2xl gap-4">
+        <div className="flex flex-row flex-wrap justify-center text-2xl gap-4">
             <StatCard
-              title={'Total de Ventas para Corte'}
+              title={'Total de Ventas'}
               stat={`$${formatNumberWithCommas(totalSales)}`}
               icon={faSackDollar}
               twClass={'text-green-600'}

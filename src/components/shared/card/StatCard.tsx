@@ -18,8 +18,8 @@ export const StatCard = ({title, stat, icon, twClass=''}: StatCardProps) => {
             icon && 
             <FontAwesomeIcon class="" icon={icon} size="2x" /> 
         }
-        <h3 class="tracking-tight text-md font-medium py-1">{title}</h3>
-        <div class="text-2xl font-bold">{stat}</div>
+        <h3 class="tracking-tight text-base text-center lg:text-2xl font-medium py-1">{title}</h3>
+        <div class="text-2xl lg:text-4xl font-bold">{stat}</div>
       </div>
     </div>
   );
