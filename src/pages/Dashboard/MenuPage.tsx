@@ -8,8 +8,9 @@ export const MenuPage = () => {
   const listItems: Product[] = Drinks;
   const [isOpen, setIsOpen] = useState(false);
 
-  const total   = useCartStore(state => state.total);
-  const addItem = useCartStore(state => state.addItem);
+  const total         = useCartStore(state => state.total);
+  const addItem       = useCartStore(state => state.addItem);
+  const countItems = useCartStore(state => state.getCountItems());
 
   useEffect(() => {
     setIsOpen(total > 0);
@@ -41,7 +42,7 @@ export const MenuPage = () => {
         }
         {
           total > 0 &&
-          <FloatButton handleAction={() => setIsOpen(!isOpen)} />
+          <FloatButton count={countItems} handleAction={() => setIsOpen(!isOpen)} />
         }
     </div>    
   )

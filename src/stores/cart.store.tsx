@@ -56,7 +56,11 @@ export const useCartStore = create<CartState>()(
         }
 
         return state;
-      })
+      }),
+
+      getCountItems: () => {
+        return get().items.length;
+      }
 
     }),
     { 

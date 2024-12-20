@@ -16,4 +16,5 @@ export interface CartState {
     updateItem: (total: number, items: CartItem[]) => void,
     cleanItems: () => void,
     removeItem: (id: number) => void,
+    getCountItems: () => number;
 }
