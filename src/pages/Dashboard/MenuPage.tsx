@@ -33,8 +33,8 @@ export const MenuPage = () => {
         </div>
         {
           (isOpen) &&
-          <div class={`w-72 flex justify-center`}>
-              <div class="fixed min-w-64 max-w-72">
+          <div class={`sm:w-72 flex justify-center`}>
+              <div class="fixed right-0 top-0 w-full shadow-lg sm:min-w-64 sm:max-w-72">
                 <Cart handleClose={() => setIsOpen(!isOpen)} />
               </div>
           </div>

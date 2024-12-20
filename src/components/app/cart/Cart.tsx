@@ -54,7 +54,7 @@ export const Cart = ({handleClose}: { handleClose: () => void }) => {
     
   return (
     <div 
-        class='bg-white text-black h-[95vh] p-6 rounded-lg shadow-md 
+        class='bg-white text-black h-screen sm:h-[95vh] p-6 rounded-lg shadow-md 
                 flex flex-col justify-between'
                 >  
         {/* <div class="w-full flex flex-row-reverse" >
