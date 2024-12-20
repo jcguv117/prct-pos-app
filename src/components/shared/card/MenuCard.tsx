@@ -1,3 +1,4 @@
+import { formatNumberWithCommas } from "../../../helpers/utilities";
 
 interface MenuItem {
   image: string;
@@ -35,7 +36,7 @@ export const MenuCard = ({ item, add }: MenuCardProps) => {
             <h3 className="text-xl font-semibold mb-2">{label}</h3>
             <p className="text-gray-600 mb-4">{description}</p>
             <div className="flex justify-between items-center">
-              <span className="text-lg font-bold">${price || '-'}</span>
+              <span className="text-lg font-bold">${formatNumberWithCommas(price) || '-'}</span>
             </div>
           </div>
       </div>

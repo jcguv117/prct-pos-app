@@ -5,6 +5,7 @@ import { useOrderStore, useCartStore } from "../../../stores"
 import { CartItem } from "../../../interfaces/Cart.interface"
 import { StatusOrder } from "../../../interfaces"
 import Swal from "sweetalert2"
+import { formatNumberWithCommas } from "../../../helpers/utilities"
 
 
 export const Cart = ({handleClose}: { handleClose: () => void }) => {
@@ -81,7 +82,7 @@ export const Cart = ({handleClose}: { handleClose: () => void }) => {
         <div class="border-t pt-4 mt-4">
             <div class="flex justify-between items-end mb-4 font-semibold">
                 <span class="">Total:</span>
-                <span class="text-3xl">${total}</span>
+                <span class="text-3xl">${formatNumberWithCommas(total)}</span>
             </div>
             <div class='flex flex-col gap-2'>
                 <button  
