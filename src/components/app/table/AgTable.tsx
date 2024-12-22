@@ -132,7 +132,7 @@ export const AgTable = () => {
 
     const actionButtoms = (id: number) => {
       return (
-        <div class="flex flex-row gap-1">
+        <div class="flex flex-row gap-x-2">
           <button class="text-stone-600" onClick={() => handleShow(id) }><FontAwesomeIcon icon={faEye} size='xl' /></button>
           <button class="text-amber-600" onClick={() => handleUpdateOrder(id)}><FontAwesomeIcon icon={faEdit} size='xl' /></button>
           <button class="text-green-600" onClick={() => handleConfirm(id)}><FontAwesomeIcon icon={faCircleCheck} size='xl' /></button>
@@ -165,12 +165,12 @@ export const AgTable = () => {
     };
 
     const [colDefs] = useState<ColDef<Order>[]>([
-        { field: 'idOrder', headerName: "#", valueFormatter: p => 'Orden #' + formatNumberWithCommas(p.value.toString()) },
+        { field: 'idOrder', headerName: "#", valueFormatter: p => 'Orden #' + formatNumberWithCommas(p.value.toString()), maxWidth: 120 },
         { field: 'date',    headerName: "Fecha" },
         { field: 'time',    headerName: "Hora" },
         { field: 'total',   headerName: "Total", valueFormatter: p => '$' + formatNumberWithCommas(p.value.toString())  },
         { field: 'status',  headerName: 'Estado', cellRenderer: (params: ICellRendererParams) => statusComponent(params.value) },
-        { field: 'idOrder',  headerName: 'Acciones', cellRenderer: (params: ICellRendererParams) => actionButtoms(params.value) },
+        { field: 'idOrder',  headerName: 'Acciones', cellRenderer: (params: ICellRendererParams) => actionButtoms(params.value), flex: 1 },
     ]);
 
   return (
