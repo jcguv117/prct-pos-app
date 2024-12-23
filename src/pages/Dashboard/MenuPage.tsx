@@ -1,7 +1,7 @@
 import { Cart, FloatButton, MenuCard } from "../../components";
 import { useState } from "preact/hooks";
 import { useCartStore } from "../../stores";
-import { Drinks } from "../../helpers/data/DrinkItems";
+import { Drinks } from "../../helpers";
 import { Product } from "../../interfaces";
 
 export const MenuPage = () => {

@@ -5,7 +5,7 @@ import { useOrderStore, useCartStore } from "../../../stores"
 import { CartItem } from "../../../interfaces/Cart.interface"
 import { StatusOrder } from "../../../interfaces"
 import Swal from "sweetalert2"
-import { formatNumberWithCommas } from "../../../helpers/utilities"
+import { formatNumberWithCommas } from "../../../helpers"
 
 
 export const Cart = ({handleClose}: { handleClose: () => void }) => {

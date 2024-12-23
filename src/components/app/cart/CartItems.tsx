@@ -2,7 +2,7 @@ import { faCircleMinus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CartItem } from "../../../interfaces/Cart.interface"
 import { useCartStore } from "../../../stores"
-import { formatNumberWithCommas } from "../../../helpers/utilities"
+import { formatNumberWithCommas } from "../../../helpers"
 
 
 export const CartItems = ({id, name, total, quantity}: CartItem ) => {

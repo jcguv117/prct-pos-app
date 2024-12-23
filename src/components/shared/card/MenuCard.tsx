@@ -1,4 +1,4 @@
-import { formatNumberWithCommas } from "../../../helpers/utilities";
+import { formatNumberWithCommas } from "../../../helpers";
 
 interface MenuItem {
   image: string;

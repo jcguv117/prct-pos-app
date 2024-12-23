@@ -7,7 +7,7 @@ import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { ColDef, ICellRendererParams } from 'ag-grid-community';
 import { useCartStore, useOrderStore } from '../../../stores';
 import { Order, StatusOrder } from '../../../interfaces';
-import { formatNumberWithCommas } from '../../../helpers/utilities';
+import { formatNumberWithCommas } from '../../../helpers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleXmark, faEdit, faEye } from '@fortawesome/free-solid-svg-icons';
 
