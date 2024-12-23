@@ -11,7 +11,7 @@ interface StatCardProps {
 export const StatCard = ({title, stat, icon, twClass=''}: StatCardProps) => {
   return (
     <div
-      class="bg-white text-black rounded-lg border bg-card text-card-foreground shadow-sm"
+      class="bg-white text-black rounded-lg border bg-card text-card-foreground shadow-md"
     >
       <div class={"h-full p-6 flex flex-col items-center justify-center space-y-0 " + twClass}>
         { 
