@@ -4,8 +4,7 @@ import { CartItems } from "./CartItems"
 import { useOrderStore, useCartStore } from "../../../stores"
 import { CartItem } from "../../../interfaces/Cart.interface"
 import { StatusOrder } from "../../../interfaces"
-import Swal from "sweetalert2"
-import { formatNumberWithCommas } from "../../../helpers"
+import { formatNumberWithCommas, swalAlert } from "../../../helpers"
 
 
 export const Cart = ({handleClose}: { handleClose: () => void }) => {
@@ -22,24 +21,19 @@ export const Cart = ({handleClose}: { handleClose: () => void }) => {
 
     const handleConfirm = (total: number, cartItems: CartItem[]) => {
         const orderEditingId = getOrderEditing();
+        const iconAlert = "success";
         if(orderEditingId) {
             updateOrder(orderEditingId, total, cartItems);
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
+            swalAlert({
+                icon: iconAlert,
                 title: "Se actualizo la orden.",
-                showConfirmButton: false,
-                timer: 1500
-            });
+            })
         } else {
             confirmOrder(total, cartItems);
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Se agrego la nueva orden.",
-                showConfirmButton: false,
-                timer: 1500
-            });
+            swalAlert({
+                icon: iconAlert,
+                title: "Se actualizo la orden.",
+            })
         }
         cleanItems();
     }

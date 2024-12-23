@@ -7,12 +7,9 @@ import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { ColDef, ICellRendererParams } from 'ag-grid-community';
 import { useCartStore, useOrderStore } from '../../../stores';
 import { Order, StatusOrder } from '../../../interfaces';
-import { formatNumberWithCommas } from '../../../helpers';
+import { confirmAlert, formatNumberWithCommas } from '../../../helpers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleXmark, faEdit, faEye } from '@fortawesome/free-solid-svg-icons';
-
-import Swal from 'sweetalert2';
-
 
 export const AgTable = () => {
 
@@ -34,18 +31,9 @@ export const AgTable = () => {
     const handleUpdateOrder = (id: number) => {
         const isEditing = getCountOrders(StatusOrder.CHANGING)
         if(!isEditing) {
-          Swal.fire({
-            text: '¿ Esta seguro de editar esta orden ?',
+          confirmAlert({
             icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Aceptar',
-            cancelButtonText: 'Cancelar',
-            customClass: {
-              popup: 'bg-white rounded-lg shadow-lg',
-              confirmButton: 'bg-blue-500 text-white rounded m-1 px-4 py-2 font-bold',
-              cancelButton: 'bg-stone-500 text-white rounded m-1 px-4 py-2 font-bold',
-            },
-            buttonsStyling: false,
+            text: '¿ Esta seguro de editar esta orden ?',
           }).then(result => {
             if(result.isConfirmed) {
               const order = getOrderById(id);
@@ -56,60 +44,37 @@ export const AgTable = () => {
                 updateStatusOrder(id, StatusOrder.CHANGING)
                 window.location.href = '/dashboard/menu';
               }
-
             }
           })
         } else 
-          Swal.fire({
-            text: 'Ya existe una orden en revisión.',
-            icon: 'warning',
-            confirmButtonText: 'Aceptar',
-            customClass: {
-              popup: 'bg-white rounded-lg shadow-lg',
-              confirmButton: 'bg-blue-500 text-white rounded px-4 py-2 font-bold',
-            },
-            buttonsStyling: false,
-          });
+        confirmAlert({
+          icon: 'warning',
+          text: 'Ya existe una orden en revisión.',
+          showCancelButton: false,
+          confirmButtonText: 'Aceptar',
+        })
     }
 
     const handleConfirm = (id: number) => {
-      Swal.fire({
-        text: '¿ Esta seguro de completar esta orden ?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Aceptar',
-        cancelButtonText: 'Cancelar',
-        customClass: {
-          popup: 'bg-white rounded-lg shadow-lg',
-          confirmButton: 'bg-blue-500 text-white rounded m-1 px-4 py-2 font-bold',
-          cancelButton: 'bg-stone-500 text-white rounded m-1 px-4 py-2 font-bold',
-        },
-        buttonsStyling: false,
-      }).then(result => {
-        if(result.isConfirmed) {
-          updateStatusOrder(id, StatusOrder.DONE)
-        }
-      })
+        confirmAlert({
+          icon: 'warning',
+          text: '¿ Esta seguro de completar esta orden ?',
+        }).then(result => {
+          if(result.isConfirmed) {
+            updateStatusOrder(id, StatusOrder.DONE)
+          }
+        })
     }
 
     const handleCancel = (id: number) => {
-      Swal.fire({
-        text: '¿ Esta seguro de cancelar esta orden ?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Aceptar',
-        cancelButtonText: 'Cancelar',
-        customClass: {
-          popup: 'bg-white rounded-lg shadow-lg',
-          confirmButton: 'bg-blue-500 text-white rounded m-1 px-4 py-2 font-bold',
-          cancelButton: 'bg-stone-500 text-white rounded m-1 px-4 py-2 font-bold',
-        },
-        buttonsStyling: false,
-      }).then(result => {
-        if(result.isConfirmed) {
-          updateStatusOrder(id, StatusOrder.CANCEL)
-        }
-      })
+        confirmAlert({
+          icon: 'warning',
+          text: '¿ Esta seguro de cancelar esta orden ?',
+        }).then(result => {
+          if(result.isConfirmed) {
+            updateStatusOrder(id, StatusOrder.CANCEL)
+          }
+        })
     }
 
     const handleShow = (id: number) => {
@@ -118,14 +83,12 @@ export const AgTable = () => {
       order?.listItems.forEach( item => {
         strItemsOrder += `<br> ${item.name} | $${item.price} x ${item.quantity} `
       })
-      Swal.fire({
+      confirmAlert({
+        icon: 'warning',
+        text: '¿ Esta seguro de completar esta orden ?',
         html: '<h2 class="mb-2 font-bold text-2xl">Lista de productos</h2> <hr/>' + strItemsOrder,
+        showCancelButton: false,
         confirmButtonText: 'Aceptar',
-        customClass: {
-          popup: 'bg-white rounded-lg shadow-lg',
-          confirmButton: 'bg-blue-500 text-white rounded m-1 px-4 py-2 font-bold',
-        },
-        buttonsStyling: false,
       })
     }
     
