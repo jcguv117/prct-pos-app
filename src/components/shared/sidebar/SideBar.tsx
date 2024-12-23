@@ -20,7 +20,6 @@ const menuItems: SideBar[] = [
 export const SideBar = () => {
     return (
         <div 
-          id="sidebar" 
           class="min-h-screen"
           >
           <div id="logoSideBar" class="my-4 px-6">
@@ -31,7 +30,7 @@ export const SideBar = () => {
           </div>
     
           {/* Nav Items */ }
-          <nav id="nav" class="w-full">
+          <nav class="w-full">
     
             {
               menuItems.map( item =>(

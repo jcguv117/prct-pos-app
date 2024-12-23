@@ -5,7 +5,7 @@ interface ProductState {}
 
 export const useProductStore = create<ProductState>()(
   persist(
-    (set, get) => ({
+    () => ({
 
     }),
     { 

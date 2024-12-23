@@ -170,7 +170,7 @@ export const AgTable = () => {
         { field: 'time',    headerName: "Hora" },
         { field: 'total',   headerName: "Total", valueFormatter: p => '$' + formatNumberWithCommas(p.value.toString())  },
         { field: 'status',  headerName: 'Estado', cellRenderer: (params: ICellRendererParams) => statusComponent(params.value) },
-        { field: 'idOrder',  headerName: 'Acciones', cellRenderer: (params: ICellRendererParams) => actionButtoms(params.value), flex: 1 },
+        { field: 'idOrder',  headerName: 'Acciones', cellRenderer: (params: ICellRendererParams) => actionButtoms(params.value), flex: 1, minWidth: 180 },
     ]);
 
   return (

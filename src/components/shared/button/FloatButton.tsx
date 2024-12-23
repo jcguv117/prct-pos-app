@@ -17,7 +17,7 @@ export const FloatButton = ({count, handleAction }: FloatButtonProps) => {
       }
       <button 
         type="button" 
-        class="rounded-full bg-green-600 h-16 w-16"
+        class="rounded-full btn-flat h-16 w-16"
         
       >
         <FontAwesomeIcon icon={faFileInvoice} size="2xl" />

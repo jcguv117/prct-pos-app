@@ -4,7 +4,7 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
 body {
@@ -13,10 +13,20 @@ body {
 }
 
 /* SIDEBAR */
-#nav a {
-  @apply w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-white/5 transition ease-linear duration-150;
+#sidebar nav a {
+  @apply w-full px-2 inline-flex space-x-2 items-center border-b border-minsk-800 py-3 hover:bg-white/5 transition ease-linear duration-150;
 }
 
-#nav a.active {
-  @apply  bg-blue-800;
+#sidebar nav a.active {
+  @apply  bg-minsk-700;
+}
+
+#sidebar {
+  @apply bg-gradient-to-br from-minsk-900 to-minsk-950;
+}
+
+@layer components {
+  .btn-flat {
+    @apply bg-minsk-600 hover:bg-minsk-800 text-center text-white shadow;
+  }
 }
