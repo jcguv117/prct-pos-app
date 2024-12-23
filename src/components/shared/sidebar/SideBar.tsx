@@ -48,7 +48,7 @@ export const SideBar = () => {
 const SideMenuItem = ({ path, title, subTitle, icon }: SideBar) => {
   return (
     <NavLink to={path}>
-        <div class='h-full align-top self-start w-6 flex justify-center'>
+        <div class='h-full align-top self-start w-6 flex justify-center text-white'>
             {
               icon &&
               <FontAwesomeIcon icon={icon} size="xl" />

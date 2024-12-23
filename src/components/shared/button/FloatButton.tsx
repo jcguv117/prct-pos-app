@@ -8,7 +8,7 @@ interface FloatButtonProps {
 
 export const FloatButton = ({count, handleAction }: FloatButtonProps) => {
   return (
-    <div class="fixed top-4 right-5" onClick={handleAction}>
+    <div class="fixed top-4 right-5 text-white" onClick={handleAction}>
       {
         count &&
         <div class="absolute rounded-full bg-red-600 -right-1 -top-1 text-center w-6">
