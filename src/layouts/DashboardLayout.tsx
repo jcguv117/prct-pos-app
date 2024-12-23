@@ -15,7 +15,7 @@ export const DashboardLayout = () => {
         <button 
           type="button"
           onClick={toggleSidebar} 
-          class={`fixed btn-flat z-40 top-2 left-2 inline-flex items-center rounded-lg p-2 px-3 text-sm md:hidden`}
+          class={`fixed btn-default z-40 top-2 left-2 inline-flex items-center rounded-lg p-2 px-3 text-sm md:hidden`}
               >
           <span class="sr-only text-white">Open</span>
           <FontAwesomeIcon icon={faBars} size='2xl'/>

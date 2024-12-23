@@ -26,7 +26,13 @@ body {
 }
 
 @layer components {
-  .btn-flat {
+  .btn-default {
     @apply bg-minsk-600 hover:bg-minsk-800 text-center text-white shadow;
+  }
+  .btn-flat {
+    @apply rounded px-4 py-2 font-bold m-1;
+  }
+  .btn-cancel {
+    @apply bg-stone-500 hover:bg-stone-600 text-white;
   }
 }
